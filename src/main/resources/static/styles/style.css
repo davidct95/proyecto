@@ -1,0 +1,46 @@
+
+body {
+    font-family: 'Calibri';
+    background-color: #f0f0f0;
+    margin: 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto; 
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; 
+    margin-bottom: 50px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    width: 30%;
+  }
+  
+  .titulo {
+    background-color: #0c2074;
+    color: white;
+  }
+
+  .ip{
+    background-color: #a2abc6;
+    font-weight: bold;
+  }
+  
+  .encabezado {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    background-color: #0c2074;
+    color: white;
+  }
+  

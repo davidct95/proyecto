@@ -14,4 +14,6 @@ public interface Componente13Service {
 	
 	void deleteById(Long id);
 
+	void upload(Componente13Model model);
+
 }

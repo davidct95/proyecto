@@ -53,4 +53,10 @@ public class Componente13ServiceImpl implements Componente13Service{
 	public void deleteById(Long id) {
 		componente13Repository.deleteById(id);
 	}
+
+	@Override
+	@Transactional
+	public void upload(Componente13Model model) {
+		componente13Repository.save(componente13Converter.aEntity(model));
+	}
 }
