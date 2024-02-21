@@ -44,7 +44,7 @@ public class Componente13Controller {
 
    @GetMapping("/buscar/{id}")
     @ResponseBody
-    public String findById(@PathVariable Long id){
+    public FeatureCollection findById(@PathVariable Long id){
 
         Componente13Model componente13Model = componente13Service.findById(id);
 
@@ -93,13 +93,7 @@ public class Componente13Controller {
         featureCollection.setFeatures(listFeature);
 
 
-        try {
-            String s = objectMapper.writeValueAsString(featureCollection);
-            return s;
-
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        return featureCollection;
     }
 
 

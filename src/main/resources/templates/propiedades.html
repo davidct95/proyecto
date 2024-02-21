@@ -1,53 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
-	
+
 	<style>
-		
+
 body {
     font-family: 'Calibri';
     background-color: #f0f0f0;
     margin: 0;
-    margin-top: 50px;
+    margin-top: 100px;
     margin-bottom: 50px;
-  }
-  
-  .container {
-    width: 80%;
-    margin: 0 auto; 
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px; 
-    margin-bottom: 50px;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-    width: 30%;
-  }
-  
-  .titulo {
-    background-color: #0c2074;
-    color: white;
   }
 
-  .ip{
-    background-color: #a2abc6;
-    font-weight: bold;
+form {
+	margin-top: 50px;
+}
+
+  table{
+	  margin-top: 50px;
   }
-  
-  .encabezado {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    background-color: #0c2074;
-    color: white;
+
+  .cabecera {
+	  text-align: center;
+	  margin-bottom: 30px;
   }
-  
+
 	</style>
 
 <head>
@@ -63,12 +39,91 @@ body {
 
 	<div class="container">
 		<form method="post" th:action="@{/home/save}" th:object="${componentes}">
-			
-			<h2 th:text="*{componente}"></h2>
-			
+
+			<h2 th:text="*{componente}" class="cabecera"></h2>
+
+			<select id="selectTabla" onchange="cambiarTabla()" class="form-select form-select-lg mb-3">
+				<option value="opcion1" selected>01_DAI_Identificación</option>
+				<option value="opcion2">02_DAI_Cantidades</option>
+				<option value="opcion3">03_DAI_Proyectos</option>
+				<option value="opcion4">04_DAI_Obra</option>
+				<option value="opcion5">05_DAI_EOM</option>
+			</select>
+
+			<table id="miTabla" class="table">
+				<thead>
+				<tr>
+					<th>Identificación del parámetro</th>
+					<th>Tipo</th>
+					<th>Valor</th>
+				</tr>
+				</thead>
+				<tbody class="table-group-divider">
+				<tr>
+					<td class="ip">01_00_DAI_ID</td>
+					<td class="tipo_iden"></td>
+					<td class="tipo_iden"><input type="text" th:field="*{dai_01_00_id_valor}" class="form-control"/></td>
+				</tr>
+				<tr>
+					<td class="ip">01_01_ DAI _Proyecto </td>
+					<td class="tipo_iden"></td>
+					<td class="tipo_iden"><input type="text" th:field="*{dai_01_01_proyecto_valor}" class="form-control"/></td></td>
+				</tr>
+				<tr>
+					<td class="ip">01_02_DAI_Localizador</td>
+					<td class="tipo_iden"></td>
+					<td class="tipo_iden"><input type="text" th:field="*{dai_01_02_localizador_valor}" class="form-control"/></td>
+				</tr>
+				<tr>
+					<td class="ip">01_03_DAI_Estado </td>
+					<td class="tipo_iden"></td>
+					<td class="tipo_iden"><input type="text" th:field="*{dai_01_03_estado_valor}" class="form-control"/></td>
+				</tr>
+				<tr>
+					<td class="ip">01_03_DAI_Estado </td>
+					<td class="tipo_iden"></td>
+					<td class="tipo_iden"><input type="text" th:field="*{dai_01_03_estado_valor}" class="form-control"/></td>
+				</tr>
+				<tr>
+					<td class="ip">01_04_DAI_Clasificación</td>
+					<td class="tipo_iden"></td>
+					<td class="tipo_iden"><input type="text" th:field="*{dai_01_04_clasificacion_valor}" class="form-control"/></td>
+				</tr>
+				<tr>
+					<td class="ip">01_05_DAI_Tipología</td>
+					<td class="tipo_iden"></td>
+					<td class="tipo_iden"><input type="text" th:field="*{dai_01_05_tipologia_valor}" class="form-control"/></td>
+				</tr>
+				<tr>
+					<td class="ip">01_06_DAI_Disciplina</td>
+					<td class="tipo_iden"></td>
+					<td class="tipo_iden"><input type="text" th:field="*{dai_01_06_disciplina_valor}" class="form-control"/></td>
+				</tr>
+				<tr>
+					<td class="ip">01_07_DAI_Subdisciplina</td>
+					<td class="tipo_iden"></td>
+					<td class="tipo_iden"><input type="text" th:field="*{dai_01_07_subdisciplina_valor}" class="form-control"/></td>
+				</tr>
+
+				<tr>
+					<td class="ip">01_08_DAI_Material</td>
+					<td class="tipo_iden"></td>
+					<td class="tipo_iden"><input type="text" th:field="*{dai_01_08_material_valor}" class="form-control"/></td>
+				</tr>
+				</tbody>
+			</table>
+
+
+
 			<input type="hidden" th:field="*{id}" value="${id}">
-			
-			<table>
+
+			<input type="submit" class="btn btn-primary" value="Save">
+			<a th:href="@{/home/show}"><button type="button" class="btn btn-danger">Cancelar</button></a>
+
+		</form>
+	</div>
+
+			<!--<table>
 				<thead>
 					<tr>
 						<th class="encabezado" colspan="3">SET DE PROPIEDADES</th>
@@ -264,12 +319,250 @@ body {
 						<td class="tipo_iden"><input type="text" th:field="*{dai_05_03_02_auxcontable_valor}" class="form-control"/></td>
 					</tr>
 				</tbody>
-			</table>
+			</table>-->
 
-			
-			<input type="submit" class="btn btn-primary" value="Save">
-			<a th:href="@{/home/show}"><button type="button" class="btn btn-danger">Cancelar</button></a>
-		</form>
-	</div>
+
+
+
+	<script th:inline="javascript">
+
+		var dai_01_00_id_valor = /*[[${componentes.dai_01_00_id_valor}]]*/ 'default';
+		var dai_01_01_proyecto_valor = /*[[${componentes.dai_01_01_proyecto_valor}]]*/ 'default';
+		var dai_01_02_localizador_valor = /*[[${componentes.dai_01_02_localizador_valor}]]*/ 'default';
+		var dai_01_03_estado_valor = /*[[${componentes.dai_01_03_estado_valor}]]*/ 'default';
+		var dai_01_04_clasificacion_valor = /*[[${componentes.dai_01_04_clasificacion_valor}]]*/ 'default';
+		var dai_01_05_tipologia_valor = /*[[${componentes.dai_01_05_tipologia_valor}]]*/ 'default';
+		var dai_01_06_disciplina_valor = /*[[${componentes.dai_01_06_disciplina_valor}]]*/ 'default';
+		var dai_01_07_subdisciplina_valor = /*[[${componentes.dai_01_07_subdisciplina_valor}]]*/ 'default';
+		var dai_01_08_material_valor = /*[[${componentes.dai_01_08_material_valor}]]*/ 'default';
+		var dai_02_01_unidad_valor = /*[[${componentes.dai_02_01_unidad_valor}]]*/ 'default';
+		var dai_02_02_longitud_valor = /*[[${componentes.dai_02_02_longitud_valor}]]*/ 'default';
+		var dai_02_03_espesor_valor = /*[[${componentes.dai_02_03_espesor_valor}]]*/ 'default';
+		var dai_02_04_area_valor = /*[[${componentes.dai_02_04_area_valor}]]*/ 'default';
+		var dai_02_05_volumen_valor = /*[[${componentes.dai_02_05_volumen_valor}]]*/ 'default';
+		var dai_03_01_faseobra_valor = /*[[${componentes.dai_03_01_faseobra_valor}]]*/ 'default';
+		var dai_03_02_plano_valor = /*[[${componentes.dai_03_02_plano_valor}]]*/ 'default';
+		var dai_03_03_pptp_valor = /*[[${componentes.dai_03_03_pptp_valor}]]*/ 'default';
+		var dai_03_04_01_udmedicion01_valor_valor = /*[[${componentes.dai_03_04_01_udmedicion01_valor_valor}]]*/ 'default';
+		var dai_03_04_02_udmedicion02_valor = /*[[${componentes.dai_03_04_02_udmedicion02_valor}]]*/ 'default';
+		var dai_03_04_03_udmedicion03_valor = /*[[${componentes.dai_03_04_03_udmedicion03_valor}]]*/ 'default';
+		var dai_04_01_controlesdecalidad_valor = /*[[${componentes.dai_04_01_controlesdecalidad_valor}]]*/ 'default';
+		var dai_04_02_fotografias = /*[[${componentes.dai_04_02_fotografias}]]*/ 'default';
+		var dai_04_03_seguridadysalud = /*[[${componentes.dai_04_03_seguridadysalud}]]*/ 'default';
+		var dai_04_04_informesdeaprobacion_valor = /*[[${componentes.dai_04_04_informesdeaprobacion_valor}]]*/ 'default';
+		var dai_04_05_certificaciones_valor = /*[[${componentes.dai_04_05_certificaciones_valor}]]*/ 'default';
+		var dai_04_06_planosasbuilt_valor = /*[[${componentes.dai_04_06_planosasbuilt_valor}]]*/ 'default';
+		var dai_04_07_medioambiente_valor = /*[[${componentes.dai_04_07_medioambiente_valor}]]*/ 'default';
+		var dai_05_01_01_necesitamantenimiento_valor = /*[[${componentes.dai_05_01_01_necesitamantenimiento_valor}]]*/ 'default';
+		var dai_05_01_02_auxmantenimiento_valor = /*[[${componentes.dai_05_01_02_auxmantenimiento_valor}]]*/ 'default';
+		var dai_05_02_01_codexplotacion_valor = /*[[${componentes.dai_05_02_01_codexplotacion_valor}]]*/ 'default';
+		var dai_05_02_02_auxexplotacion_valor = /*[[${componentes.dai_05_02_02_auxexplotacion_valor}]]*/ 'default';
+		var dai_05_03_01_codcontable_valor = /*[[${componentes.dai_05_03_01_codcontable_valor}]]*/ 'default';
+		var dai_05_03_02_auxcontable_valor = /*[[${componentes.dai_05_03_02_auxcontable_valor}]]*/ 'default';
+
+
+		function cambiarTabla(){
+
+			var select = document.getElementById("selectTabla");
+			var tabla = document.getElementById("miTabla");
+			var tbody = tabla.getElementsByTagName("tbody")[0];
+			tbody.innerHTML = ""; // Limpiar el contenido existente
+
+			if (select.value === "opcion1") {
+				tbody.innerHTML += `
+                <tr>
+                    <td class="ip">01_00_DAI_ID</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_01_00_id_valor}" class="form-control"/></td>
+                </tr>
+                   <tr>
+                    <td class="ip">dai_01_01_proyecto</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_01_01_proyecto_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_01_02_localizador</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_01_02_localizador_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_01_03_estado</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_01_03_estado_valor}" class="form-control"/></td>
+                </tr>
+                  <tr>
+                    <td class="ip">dai_01_01_proyecto</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_01_01_proyecto_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_01_04_clasificacion</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_01_04_clasificacion_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_01_05_tipologia</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_01_05_tipologia_valor}" class="form-control"/></td>
+                </tr>
+                               <tr>
+                    <td class="ip">dai_01_06_disciplina</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_01_06_disciplina_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_01_07_subdisciplina</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_01_07_subdisciplina_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_01_08_material</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_01_08_material_valor}" class="form-control"/></td>
+                </tr>
+
+
+            `;
+			} else if (select.value === "opcion2") {
+				tbody.innerHTML += `
+                 <tr>
+                    <td class="ip">dai_02_01_unidad</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_02_01_unidad_valor}" class="form-control"/></td>
+                </tr>
+                   <tr>
+                    <td class="ip">dai_02_02_longitud</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_02_02_longitud_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_02_03_espesor</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_02_03_espesor_valor}" class="form-control"/></td>
+                </tr>
+                   <tr>
+                    <td class="ip">dai_02_04_area</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_02_04_area_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_02_05_volumen</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_02_05_volumen_valor}" class="form-control"/></td>
+                </tr>
+            `;
+			} else if (select.value === "opcion3") {
+				tbody.innerHTML += `
+                   <tr>
+                    <td class="ip">dai_03_01_faseobra</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_03_01_faseobra_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_03_02_plano</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_03_02_plano_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_03_03_pptp</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_03_03_pptp_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_03_04_01_udmedicion01</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_03_04_01_udmedicion01_valor_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_03_04_02_udmedicion02</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_03_04_02_udmedicion02_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_03_04_03_udmedicion03</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_03_04_03_udmedicion03_valor}" class="form-control"/></td>
+                </tr>
+
+            `;
+			} else if (select.value === "opcion4") {
+				tbody.innerHTML += `
+                   <tr>
+                    <td class="ip">dai_04_01_controlesdecalidad</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_04_01_controlesdecalidad_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_04_02_fotografias</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_04_02_fotografias}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_04_03_seguridadysalud</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_04_03_seguridadysalud}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_04_04_informesdeaprobacion</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_04_04_informesdeaprobacion_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_04_05_certificaciones</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_04_05_certificaciones_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_04_06_planosasbuilt</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_04_06_planosasbuilt_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_04_07_medioambiente</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_04_07_medioambiente_valor}" class="form-control"/></td>
+                </tr>
+
+            `;
+			} else if (select.value === "opcion5") {
+				tbody.innerHTML += `
+                   <tr>
+                    <td class="ip">dai_05_01_01_necesitamantenimiento</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_05_01_01_necesitamantenimiento_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_05_01_02_auxmantenimiento</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_05_01_02_auxmantenimiento_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_05_02_01_codexplotacion</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_05_02_01_codexplotacion_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_05_02_02_auxexplotacion</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_05_02_02_auxexplotacion_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_05_03_01_codcontable</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_05_03_01_codcontable_valor}" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <td class="ip">dai_05_03_02_auxcontable</td>
+                    <td class="tipo_iden"></td>
+                    <td class="tipo_iden"><input type="text" value="${dai_05_03_02_auxcontable_valor}" class="form-control"/></td>
+                </tr>
+
+            `;
+			}
+
+		}
+
+
+	</script>
 </body>
 </html>
