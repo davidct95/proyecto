@@ -5,9 +5,15 @@
     
   }
 
-  .left-column, .right-column {
+  .left-column  {
     flex-grow: 1; /* Ambas columnas ocuparán el mismo espacio */
-    width: 50%; /* Cada columna ocupará la mitad de la pantalla */
+    width: 70%; /* Cada columna ocupará la mitad de la pantalla */
+    background-color: aqua;
+  }
+
+  .right-column {
+    flex-grow: 1; /* Ambas columnas ocuparán el mismo espacio */
+    width: 30%; /* Cada columna ocupará la mitad de la pantalla */
     background-color: aqua;
   }
 
@@ -20,7 +26,7 @@
     align-items: center; /* Centrar verticalmente */
     flex-direction: column;
     box-sizing: border-box;
-    padding-top: 70px;
+    padding-top: 30px;
   }
 
   .box2 {
@@ -48,13 +54,21 @@
   #navigationButtons {
     margin-top: 30px;
   }
+
+  #navigationButtons button{
+    background-color: #ffffff;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
   
 
 table {
     border-collapse: collapse;
     border: 1px rgb(184, 182, 182) solid;
 
-    font-size: 12px;
+    font-size: 14px;
 }
 
 
@@ -96,7 +110,7 @@ td{
 }
 
 .tabla-container {
-    max-height: 270px; /* Ajusta la altura máxima según tus necesidades */
+    max-height: 200px; /* Ajusta la altura máxima según tus necesidades */
     overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando el contenido excede la altura máxima */
     width: 90%;
 }
@@ -116,5 +130,52 @@ td{
 }
 
 img {
-    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17px;
+}
+
+.boton{
+  border-color: rgb(170, 165, 165);
+  border-width: 1px;
+  width: 30px;
+  height: 30px;
+}
+
+#link {
+  background-color: #4285f4;
+}
+
+#upd{
+  background-color: #00c851;
+}
+
+#del{
+  background-color: #ff3547;
+}
+
+.tablink {
+  display: inline-block;
+  border: 1px rgb(184, 182, 182) solid;
+  flex-direction: column;
+  background-color: #ffffff;
+  margin: 0;
+}
+
+.tablink {
+  cursor: pointer;
+}
+
+.selected {
+  background-color: rgb(92, 142, 209);
+  color: white;
+}
+
+.seleccionadoTabla1{
+    border: #c82333 2px solid;
+}
+
+.td-componente td {
+    cursor: default;
 }

@@ -42,7 +42,8 @@ public class Componente13Controller {
         return "componentesForm";
     }
 
-   @GetMapping("/buscar/{id}")
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @GetMapping("/buscar/{id}")
     @ResponseBody
     public String findById(@PathVariable Long id){
 
@@ -114,13 +115,20 @@ public class Componente13Controller {
         model.addAttribute("componentes", componente13Service.findById(id));
         return "propiedades";
     }
+
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @GetMapping("p/{id}")
+    @ResponseBody
+    public Componente13Model datosPropiedades(@PathVariable Long id){
+        return componente13Service.findById(id);
+    }
     
     @PostMapping("/save")
     public String guardar(@ModelAttribute("componentes") Componente13Model model) {
     	componente13Service.save(model);
         return "redirect:/home/show";
     }
-    
+
     @GetMapping("/del/{id}")
     public String delete(@PathVariable Long id) {
     	componente13Service.deleteById(id);
