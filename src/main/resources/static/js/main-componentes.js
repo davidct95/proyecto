@@ -1,21 +1,3 @@
-window.onload = function () {
-  let tabla = document.getElementById("componentesTable");
-  let filas = Array.from(tabla.rows).slice(1); // Excluimos la primera fila (cabecera)
-  filas.sort((a, b) => {
-    let valorA = a.cells[0].textContent.trim();
-    let valorB = b.cells[0].textContent.trim();
-    return valorA.localeCompare(valorB, undefined, { numeric: true });
-  });
-  // Vaciamos la tabla
-  while (tabla.rows.length > 1) {
-    tabla.deleteRow(1);
-  }
-  // Agregamos las filas ordenadas
-  filas.forEach((fila) => {
-    tabla.appendChild(fila);
-  });
-};
-
 function openTab(tabName) {
   var i, tabcontent;
   // Ocultar todas las filas de datos
@@ -40,72 +22,6 @@ function openTab(tabName) {
   document.getElementById(tabName).classList.add("selected");
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  var table = document.querySelector(".tabla-box1");
-  var tbody = table.querySelector("tbody");
-  var rows = Array.from(tbody.querySelectorAll("tr"));
-  var navigationButtonsContainer = document.getElementById("navigationButtons");
-  var itemsPerPage = 4;
-  var currentPage = 0;
-
-  function showPage(page) {
-    var start = page * itemsPerPage;
-    var end = start + itemsPerPage;
-    rows.forEach(function (row, index) {
-      row.style.display = index >= start && index < end ? "" : "none";
-    });
-  }
-
-  function createNavigationButton(page) {
-    var button = document.createElement("button");
-    button.textContent = page + 1;
-    button.addEventListener("click", function () {
-      currentPage = page;
-      showPage(page);
-    });
-    return button;
-  }
-
-  function createNavigationButtons(totalPages) {
-    navigationButtonsContainer.innerHTML = "";
-    for (var i = 0; i < totalPages; i++) {
-      var button = createNavigationButton(i);
-      navigationButtonsContainer.appendChild(button);
-    }
-  }
-
-  function updateNavigationButtons() {
-    var totalPages = Math.ceil(rows.length / itemsPerPage);
-    createNavigationButtons(totalPages);
-  }
-
-  showPage(currentPage);
-  updateNavigationButtons();
-});
-
-$(document).ready(function () {
-  // Manejar clic en los elementos de la primera tabla
-  $("#componentesTable tbody").on("click", "tr", function () {
-    // Obtener el valor de la primera celda del registro seleccionado
-    var id = $(this).find("td:first").text();
-
-    // Realizar una solicitud AJAX para obtener los datos de la segunda tabla
-    $.ajax({
-      url: "http://localhost:8080/home/p/" + id,
-      method: "GET",
-      success: function (data) {
-        // Limpiar la segunda tabla
-        $("#tabla").empty();
-
-        // Llenar la segunda tabla con los nuevos datos
-        $("#tabla").append(data);
-      },
-      error: function () {
-        console.log("Error al obtener los datos de la segunda tabla");
-      },
-    });
-  });
-});
 
 function getPropiedades(id) {
   var xhr = new XMLHttpRequest();
@@ -115,8 +31,6 @@ function getPropiedades(id) {
   xhr.onload = function () {
     if (xhr.status >= 200 && xhr.status < 300) {
       var jsonResponse = JSON.parse(xhr.responseText);
-      console.log(Object.keys(jsonResponse));
-      console.log(jsonResponse)
 
       addValuesTable(jsonResponse);
       marcarRegistroSeleccionado(id);
@@ -188,20 +102,161 @@ function marcarRegistroSeleccionado(id){
   document.getElementById(id).classList.add("seleccionadoTabla1");
 }
 
-function modificarRegistro(id){
+function abrirModal(id){
+  let btnAbrirModal = document.getElementById('abrir-modal');
+  let modal = document.getElementById('modal')
 
-// Seleccionar el elemento <td> por su clase "th-botones"
-  var tdElement = document.getElementById('td' + id);
-  console.log(tdElement)
+  modal.showModal();
 
-// Verificar si se encontró el elemento <td>
-  if (tdElement) {
-    // Mientras haya hijos en el <td>, eliminar el primer hijo
-    while (tdElement.firstChild) {
-      tdElement.removeChild(tdElement.firstChild);
+}
+
+function cerrarModal(){
+  let btnCerrarModal = document.getElementById('cerrar-modal');
+  let modal = document.getElementById('modal');
+
+  modal.close();
+}
+
+function abrirModal(id) {
+
+  var modal = document.getElementById('modal');
+  var modalContent = document.getElementById('modalContent');
+
+  // Fetch para obtener el contenido de la URL
+  fetch('http://localhost:8080/home/edit/' + id)
+      .then(response => response.text()) // Convertir la respuesta a texto
+      .then(data => {
+        // Insertar el contenido en el modal
+        modalContent.innerHTML = data;
+        // Mostrar el modal
+        modal.showModal();
+      })
+      .catch(error => {
+        console.error('Error al obtener el contenido:', error);
+      });
+}
+
+function cerrarModal(){
+  let modal = document.getElementById('modal')
+
+  modal.close();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const tbody = document.querySelector(".tbodytabla1");
+  // Obtener todas las filas de la tabla
+  const filas = Array.from(tbody.querySelectorAll("tr"));
+
+
+  ordenarFilas(tbody, filas);
+
+  separarFilas();
+});
+
+
+
+function ordenarFilas(tbody, filas){
+  // Ordenar las filas alfabéticamente basándose en el contenido de la primera celda
+  filas.sort(function(a, b) {
+    const contenidoA = a.querySelector(".valor1-td").textContent.trim().toUpperCase();
+    const contenidoB = b.querySelector(".valor1-td").textContent.trim().toUpperCase();
+    return contenidoA.localeCompare(contenidoB);
+  });
+
+  // Vaciar el tbody actual
+  tbody.innerHTML = '';
+
+  // Insertar las filas ordenadas en el tbody nuevamente
+  filas.forEach(function(fila) {
+    tbody.appendChild(fila);
+  });
+}
+
+function separarFilas() {
+  const tbody = document.querySelector(".tbodytabla1");
+  const filas = document.getElementsByClassName('td-componente')
+  let contenedorbuttons = document.getElementById('navigationButtons');
+
+  let array = [];
+  let subArrayActual = [];
+  let longitudSubArray = 5;
+
+
+  //Agregando botones
+
+   let cantidadBotones = Math.ceil(filas.length / longitudSubArray)
+
+  for(let i = 0; i < cantidadBotones; i++){
+    var button = document.createElement('button');
+
+    button.innerText = i + 1;
+    button.id = i + 1;
+    button.className = 'lista-botones'
+    contenedorbuttons.appendChild(button);
+
+    console.log(button)
+  }
+
+  let listaBotones = document.getElementsByClassName('lista-botones')
+
+  //Mostrando solo 4 elementos
+
+  for(let i = 0; i < filas.length; i++){
+
+    subArrayActual.push(filas[i]);
+
+    if(subArrayActual.length == longitudSubArray || i == filas.length - 1){
+      array.push(subArrayActual);
+
+      subArrayActual = [];
     }
-  } else {
-    console.log('No se encontró ningún elemento <td> con la clase "th-botones".');
+  }
+
+  for(let c = 0; c < array[0].length; c++){
+    array[0][c].style.display = 'table-row';
+    listaBotones[0].style.backgroundColor = '#ff3547';
+  }
+
+
+
+  for(let i = 0; i <= listaBotones.length; i++){
+    listaBotones[i].addEventListener('click', function(){
+
+      //Reiniciando el color de los botones
+
+      for (let v = 0; v < listaBotones.length; v++){
+        listaBotones[v].style.backgroundColor = 'white';
+      }
+
+      //Ocultando las listas nuevamente al hacer click en otro botón
+
+      for(let x = 0; x < array.length; x++){
+
+        for(let y = 0; y < array[x].length; y++){
+          array[x][y].style.display = 'none';
+        }
+
+      }
+
+      let x = i;
+
+        if(i == x){
+          for(let c = 0; c < array[i].length; c++){
+              array[i][c].style.display = 'table-row';
+          }
+          listaBotones[i].style.backgroundColor = '#ff3547';
+        }
+
+    });
   }
 }
+
+
+
+
+
+
+
+
+
 

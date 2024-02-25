@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Properties {
 
+    @JsonProperty("gid")
+    private Long id;
     @JsonProperty("COMPONENTE")
     private String componente;
     @JsonProperty("NOMBRE")
@@ -20,6 +22,14 @@ public class Properties {
     private String codigo;
 
     public Properties() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getComponente() {

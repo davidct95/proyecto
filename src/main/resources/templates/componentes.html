@@ -6,7 +6,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!--Leaflet-->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!--Estilo-->
+
+    <link rel="stylesheet" href="../static/styles/style-reset.css">
     <link rel="stylesheet" href="../static/styles/style-componente.css">
+
+    <!--Proj4Leaflet-->
+
+    <script src="../static/Proj4Leaflet-master/lib/proj4-compressed.js"></script>
+    <script src="../static/Proj4Leaflet-master/src/proj4leaflet.js"></script>
 
 </head>
 
@@ -30,31 +45,32 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="tbodytabla1">
                 <tr th:each="fila:${listComponentes}" th:onclick="'getPropiedades(\'' + ${fila.id} + '\');'"
                     th:id="${fila.id}" class="td-componente">
-                    <td th:text="${fila.componente}" class="valor1-td" style="cursor: pointer"></td>
-                    <td th:text="${fila.nombre}"></td>
-                    <td th:text="${fila.sector}"></td>
-                    <td th:text="${fila.paquete}"></td>
-                    <td th:text="${fila.codigo}"></td>
+                    <td class="valor1-td" style="cursor: pointer"><p th:text="${fila.componente}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.nombre}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.sector}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.paquete}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.codigo}" class="lista-parrafo"></p></td>
                     <td class="th-botones" th:id="'td' + ${fila.id}">
 
-                        <a th:href="${fila.enlace_bim}" target="_blank" style="text-decoration: none;">
+                        <a th:href="${fila.enlace_bim}" th:id="'botton-link' + ${fila.id}" target="_blank" style="text-decoration: none;">
                         <button type="button" id="link" class="boton-tab boton-img"><img
                                 th:src="@{../static/imagenes/web.png}" alt="link"/></button>
                     </a>
 
 
-                        <button type="button" id="upd" class="boton-tab boton-upd" th:onclick="'modificarRegistro(\'' + ${fila.id} + '\');'"><img
-                                th:src="@{../static/imagenes/recargar.png}" alt="upd"/></button>
+                        <button type="button" id="abrir-modal" class="boton-tab boton-upd"><img
+                                th:src="@{../static/imagenes/recargar.png}" alt="upd" th:onclick="'abrirModal(\'' + ${fila.id} + '\');'"/></button>
 
 
 
-                        <a th:href="@{/home/del/__${fila.id}__}" style="text-decoration: none;">
+                        <a th:href="@{/home/del/__${fila.id}__}" th:id="'botton-del' + ${fila.id}" style="text-decoration: none;">
                             <button type="button" id="del" class="boton-tab boton-del"><img
                                     th:src="@{../static/imagenes/borrar.png}" alt="del"/></button>
                         </a>
+
                     </td>
                 </tr>
                 </tbody>
@@ -101,74 +117,28 @@
         </div>
     </div>
     <div class="right-column">
-        <div class="box-left"></div>
+        <div class="box-right" id="map"></div>
     </div>
 
     <!--  -->
 </main>
+
+<dialog id="modal">
+    <div id="modalContent"></div>
+    <button id="cerrar-modal"  onclick="cerrarModal()">CANCELAR</button>
+</dialog>
+
 <footer></footer>
 
-<script src="main.js"></script>
 </body>
 
-<!-- <body>
-	<div class="container mt-5">
-		<h2>Lista de Componentes</h2>
 		<form th:action="@{/home/upload}" method="post" enctype="multipart/form-data">
 			<input type="file" name="file" />
 			<button type="submit">Subir Archivo</button>
 		</form>
-		<table id="componentesTable" class="table table-striped">
-			<thead>
-				<tr>
-					<th>Componente</th>
-					<th>Nombre</th>
-					<th>Sector</th>
-					<th>Paquete</th>
-					<th>Codigo</th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="fila:${listComponentes}">
-					<td>
-						<a th:href="@{/home/propiedades/__${fila.id}__}" th:text="${fila.componente}"></a>
-					</td>
-					<td th:text="${fila.nombre}"></td>
-					<td th:text="${fila.sector}"></td>
-					<td th:text="${fila.paquete}"></td>
-					<td th:text="${fila.codigo}"></td>
-					<td>
-						<a th:href="${fila.enlace_bim}" target="_blank">
-							<button type="button" class="btn btn-primary"><img th:src="@{../static/imagenes/web.png}"
-									alt="link"></button>
-						</a>
-					</td>
-					<td>
-						<a th:href="@{/home/edit/__${fila.id}__}">
-							<button type="button" class="btn btn-info"><img th:src="@{../static/imagenes/recargar.png}"
-									alt="upd"></button>
-						</a>
-					</td>
-					<td>
-						<a th:href="@{/home/del/__${fila.id}__}">
-							<button type="button" class="btn btn-danger"><img th:src="@{../static/imagenes/borrar.png}"
-									alt="del" /></button>
-						</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
 
 
-
-</body> -->
-
-<script src="../static/js/main-componentes.js">
-
-</script>
+<script src="../static/js/main-componentes.js"></script>
+<script src="../static/js/main_leaflet.js"></script>
 
 </html>

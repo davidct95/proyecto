@@ -2,93 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Nuevo Componente</title>
+    <title>Editar Componente</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://sisweb.sencico.gob.pe/wsSisWeb/Content/AdminLTE-master/bootstrap/css/font-awesome.min.css"
-        rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            max-width: 500px;
-            margin-top: 50px;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #007bff;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-
-        .btn-danger:hover {
-            background-color: #c82333;
-            border-color: #c82333;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/styles/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <h2>Nuevo Componente</h2>
-        <form th:action="@{/home/save}" method="post" th:object="${componentes}" >
+<div id="modal-container">
+    <h2 id="modal-titulo">Editar componente</h2>
+    <form th:action="@{/home/save}" method="post" th:object="${componentes}" class="modal-form">
 
-            <input type="hidden" th:field="*{id}" value="${id}">
+        <input type="hidden" th:field="*{id}" value="${id}">
 
-            <div class="mb-3">
-                <label for="componente" class="form-label">Componente</label>
-                <input type="text" th:field="*{componente}" value="${componente}" class="form-control" id="componente">
-            </div>
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" th:field="*{nombre}" value="${nombre}" class="form-control" id="nombre">
-            </div>
-            <div class="mb-3">
-                <label for="sector" class="form-label">Sector</label>
-                <input type="text" th:field="*{sector}" value="${sector}" class="form-control" id="sector">
-            </div>
-            <div class="mb-3">
-                <label for="paquete" class="form-label">Paquete</label>
-                <input type="text" th:field="*{paquete}" value="${paquete}" class="form-control" id="paquete">
-            </div>
-            <div class="mb-3">
-                <label for="codigo" class="form-label">Código</label>
-                <input type="text" th:field="*{codigo}" value="${codigo}" class="form-control" id="codigo">
-            </div>
-            <div class="mb-3">
-                <label for="enlace_bim" class="form-label">Enlace BIM</label>
-                <input type="text" th:field="*{enlace_bim}" value="${enlace_bim}" class="form-control" id="enlace_bim">
-            </div>
-
-            <div class="mb-3 text-center">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                <a th:href="@{/home/show}" class="btn btn-danger">Cancelar</a>
-            </div>
-        </form>
-    </div>
+        <div class="mb-3">
+            <label for="componente" class="form-label">Componente:</label>
+            <input type="text" th:field="*{componente}" value="${componente}" class="form-control" id="componente">
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" th:field="*{nombre}" value="${nombre}" class="form-control" id="nombre">
+        </div>
+        <div class="mb-3">
+            <label for="sector" class="form-label">Sector:</label>
+            <input type="text" th:field="*{sector}" value="${sector}" class="form-control" id="sector">
+        </div>
+        <div class="mb-3">
+            <label for="paquete" class="form-label">Paquete:</label>
+            <input type="text" th:field="*{paquete}" value="${paquete}" class="form-control" id="paquete">
+        </div>
+        <div class="mb-3">
+            <label for="codigo" class="form-label">Código:</label>
+            <input type="text" th:field="*{codigo}" value="${codigo}" class="form-control" id="codigo">
+        </div>
+        <div class="mb-3 mb-3-ultimo">
+            <label for="enlace_bim" class="form-label">Enlace BIM:</label>
+            <input type="text" th:field="*{enlace_bim}" value="${enlace_bim}" class="form-control" id="enlace_bim">
+        </div>
+        <div class="mb-3 text-center">
+            <button type="submit" class="btn btn-primary" id="modal-guardar">GUARDAR</button>
+        </div>
+    </form>
+</div>
 </body>
 
 </html>

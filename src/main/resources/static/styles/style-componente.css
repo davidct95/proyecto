@@ -1,19 +1,19 @@
 .container {
     display: flex;
     height: 80vh;
-    width: 99vw;
+    width: 100vw;
     
   }
 
   .left-column  {
     flex-grow: 1; /* Ambas columnas ocuparán el mismo espacio */
-    width: 70%; /* Cada columna ocupará la mitad de la pantalla */
+    width: 70%;
     background-color: aqua;
   }
 
   .right-column {
     flex-grow: 1; /* Ambas columnas ocuparán el mismo espacio */
-    width: 30%; /* Cada columna ocupará la mitad de la pantalla */
+    width: 30%;
     background-color: aqua;
   }
 
@@ -41,7 +41,7 @@
     box-sizing: border-box;
   }
 
-  .box-left {
+  .box-right {
     margin: auto;
     width: 90%;
     height: 100%;
@@ -55,6 +55,10 @@
     margin-top: 30px;
   }
 
+  .lista-botones{
+      border: #2c2b2b solid 1px;
+  }
+
   #navigationButtons button{
     background-color: #ffffff;
     width: 25px;
@@ -62,19 +66,14 @@
     margin-right: 10px;
     cursor: pointer;
   }
-  
 
 table {
     border-collapse: collapse;
     border: 1px rgb(184, 182, 182) solid;
-
     font-size: 14px;
-}
-
-
-.tabla-box1{
     width: 90%;
 }
+
 
 .tabla-box1 tbody td:first-child {
     cursor: pointer;
@@ -92,23 +91,6 @@ table tr:nth-child(odd){
     background-color: #ffffff;
 }
 
-th{  
-    border: 1px rgb(184, 182, 182) solid;
-    height: 35px;
-    text-align: left;
-    padding: 0 40px 0 5px;
-    color: rgb(92, 142, 209);
-}
-
-td{
-    border: 1px rgb(184, 182, 182) solid;
-    padding: 10px;
-}
-
-.tabla-box2 td {
-    width: 30%;
-}
-
 .tabla-container {
     max-height: 200px; /* Ajusta la altura máxima según tus necesidades */
     overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando el contenido excede la altura máxima */
@@ -119,14 +101,60 @@ td{
     width: 100%; /* Ajusta el ancho de la tabla según sea necesario */
 }
 
-.tabla-box2 {
-    width: 100%; /* Ajusta el ancho de la tabla según sea necesario */
+.td-componente{
+    box-sizing: border-box;
+    display: none;
 }
 
-.tabla-box2 thead {
+#trtheadtabla1 th{
+    height: 30px;
+    vertical-align: middle;
+}
+
+.tabla-box1 td {
+    height: 30px;
+    vertical-align: middle;
+    padding: 0 0 0 10px;
+    cursor: default;
+}
+
+
+.tabla-box2 td {
+    height: 30px;
+    vertical-align: middle;
+    width: 30%;
+    padding: 0 0 0 10px;
+}
+
+td {
+    border-right: #c5c1c1 solid 1px;
+    font-family: "Calibri Light";
+}
+
+tr td:last-child {
+    border-right: none; /* Elimina el borde a la derecha del último td de cada fila */
+}
+
+th{
+    font-family: Calibri;
+    font-weight: bold;
+}
+
+.tabla-box2 th {
+    height: 30px;
     position: sticky;
+    vertical-align: middle;
     top: 0; /* Fija el encabezado en la parte superior */
     background-color: white; /* Ajusta el color de fondo según tu diseño */
+}
+
+.tablink {
+    height: 30px;
+    vertical-align: middle;
+    border: 1px rgb(184, 182, 182) solid;
+    background-color: #ffffff;
+    margin: 0;
+    cursor: pointer;
 }
 
 img {
@@ -147,7 +175,7 @@ img {
   background-color: #4285f4;
 }
 
-#upd{
+.boton-upd{
   background-color: #00c851;
 }
 
@@ -155,17 +183,7 @@ img {
   background-color: #ff3547;
 }
 
-.tablink {
-  display: inline-block;
-  border: 1px rgb(184, 182, 182) solid;
-  flex-direction: column;
-  background-color: #ffffff;
-  margin: 0;
-}
 
-.tablink {
-  cursor: pointer;
-}
 
 .selected {
   background-color: rgb(92, 142, 209);
@@ -174,8 +192,56 @@ img {
 
 .seleccionadoTabla1{
     border: #c82333 2px solid;
+    box-sizing: border-box;
 }
 
-.td-componente td {
-    cursor: default;
+.boton-tab {
+    cursor: pointer;
+    border: 0.5px solid rgb(184, 182, 182);
+    padding: 3px;
+}
+
+
+.buttonRegister{
+    width: 35px;
+    height: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc; /* bordes para el botón */
+    background-color: #f0f0f0; /* color de fondo para el botón */
+    cursor: pointer;
+}
+
+.img-button{
+    width: 100%;
+    height: 100%;
+}
+
+.lista-tabla1 {
+    width: auto;
+}
+
+#modal {
+    width: 600px;
+    height: 500px;
+    border: solid black 1px;
+}
+
+#modal::backdrop{
+    background-color: rgba(0,0,0,.55);
+}
+
+#cerrar-modal{
+    float: right;
+    font-family: Calibri;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: #ff3547;
+    width: 100px;
+    cursor: pointer;
+    border: 1px solid black;
+    height: 30px;
 }

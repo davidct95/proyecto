@@ -73,6 +73,7 @@ public class Componente13Controller {
         feature.setType(componente13Model.getFeatures_type());
 
         com.tabla.proyecto.mapJson.features.Properties featuresProperties = new com.tabla.proyecto.mapJson.features.Properties();
+        featuresProperties.setId(componente13Model.getId());
         featuresProperties.setComponente(componente13Model.getComponente());
         featuresProperties.setCodigo(componente13Model.getCodigo());
         featuresProperties.setEnlaceBim(componente13Model.getEnlace_bim());
@@ -203,4 +204,72 @@ public class Componente13Controller {
         return "redirect:/home/show";
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
+    @GetMapping("/allJson")
+    @ResponseBody
+    public List<FeatureCollection> FindAllJson(){
+        String s = null;
+        List<Componente13Model> listModel = componente13Service.findAll();
+        List<FeatureCollection> listFeatureCollection = new ArrayList<>();
+
+
+        for(int i = 0; i < listModel.size(); i++){
+            Componente13Model componente13Model = listModel.get(i);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            FeatureCollection featureCollection = new FeatureCollection();
+
+            featureCollection.setType(componente13Model.getType_());
+            featureCollection.setName(componente13Model.getName_());
+
+            //Ingresando datos del CRS
+
+            Crs crs = new Crs();
+            crs.setType(componente13Model.getCrs_type());
+            Properties properties = new Properties();
+            properties.setName(componente13Model.getCrs_properties_name());
+            crs.setProperties(properties);
+            featureCollection.setCrs(crs);
+
+            //Ingresando datos de Feature
+
+            Feature feature = new Feature();
+            List<Feature> listFeature = new ArrayList<>();
+
+            feature.setType(componente13Model.getFeatures_type());
+
+            com.tabla.proyecto.mapJson.features.Properties featuresProperties = new com.tabla.proyecto.mapJson.features.Properties();
+            featuresProperties.setId(componente13Model.getId());
+            featuresProperties.setComponente(componente13Model.getComponente());
+            featuresProperties.setCodigo(componente13Model.getCodigo());
+            featuresProperties.setEnlaceBim(componente13Model.getEnlace_bim());
+            featuresProperties.setSector(componente13Model.getSector());
+            featuresProperties.setPaquete(componente13Model.getPaquete());
+            featuresProperties.setNombre(componente13Model.getNombre());
+
+            Geometry featuresGeometry = new Geometry();
+
+            featuresGeometry.setCoordinates(componente13Model.getCoordinates());
+            featuresGeometry.setType(componente13Model.getGeometry_type());
+
+            feature.setGeometry(featuresGeometry);
+
+            feature.setProperties(featuresProperties);
+
+            listFeature.add(feature);
+
+            featureCollection.setFeatures(listFeature);
+
+                listFeatureCollection.add(featureCollection);
+
+
+        }
+
+        return listFeatureCollection;
+    }
+
+
 }
+
+
