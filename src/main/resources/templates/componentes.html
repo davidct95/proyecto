@@ -28,10 +28,18 @@
 <body>
 
 <header>
+    <img id="icono-editar" src="../static/imagenes/editar.png">
+    <h1 id="titulo">INTERFAZ DE EDICIÓN</h1>
 
 </header>
-<main class="container">
 
+<form th:action="@{/home/upload}" method="post" enctype="multipart/form-data" id="update">
+    <input type="file" name="file" id="subir-archivo"/>
+    <button type="submit" id="enviar-archivo">Enviar</button>
+</form>
+
+
+<main class="container">
     <div class="left-column">
         <div class="box1">
             <table id="componentesTable" class="tabla-box1">
@@ -81,11 +89,6 @@
             </div>
         </div>
         <div class="box2">
-
-            <!-- <div class="tabs">
-                <div class="tablink" id="seccion1" onclick="openTab('seccion1')">01_DAI_Identificación</div><div class="tablink" id="seccion2" onclick="openTab('seccion2')">02_DAI_Cantidades</div><div class="tablink" id="seccion3" onclick="openTab('seccion3')">03_DAI_Proyectos</div><div class="tablink" id="seccion4" onclick="openTab('seccion4')">04_DAI_Obra</div><div class="tablink" id="seccion5" onclick="openTab('seccion5')">05_DAI_EOM</div>
-            </div> -->
-
             <table>
                 <thead>
                 <tr id="tr-tablink">
@@ -94,6 +97,7 @@
                     <th class="tablink" id="seccion3" onclick="openTab('seccion3')">03_DAI_Proyectos</th>
                     <th class="tablink" id="seccion4" onclick="openTab('seccion4')">04_DAI_Obra</th>
                     <th class="tablink" id="seccion5" onclick="openTab('seccion5')">05_DAI_EOM</th>
+                    <th id="contenedorBotonActualizar"><img id="actualizarPropiedades" src="../static/imagenes/recargar.png" class = "" onclick="abrirModalPropiedades(this.className)"></th>
                 </tr>
                 </thead>
             </table>
@@ -128,15 +132,13 @@
     <button id="cerrar-modal"  onclick="cerrarModal()">CANCELAR</button>
 </dialog>
 
+<dialog id="modal-propiedades">
+    <div id="editarPropiedades"></div>
+</dialog>
+
 <footer></footer>
 
 </body>
-
-		<form th:action="@{/home/upload}" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" />
-			<button type="submit">Subir Archivo</button>
-		</form>
-
 
 <script src="../static/js/main-componentes.js"></script>
 <script src="../static/js/main_leaflet.js"></script>

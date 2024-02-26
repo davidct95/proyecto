@@ -24,6 +24,7 @@ function openTab(tabName) {
 
 
 function getPropiedades(id) {
+
   var xhr = new XMLHttpRequest();
 
   xhr.open("GET", "http://localhost:8080/home/p/" + id, true);
@@ -34,7 +35,6 @@ function getPropiedades(id) {
 
       addValuesTable(jsonResponse);
       marcarRegistroSeleccionado(id);
-
 
     } else {
       console.error(
@@ -53,9 +53,35 @@ function getPropiedades(id) {
   xhr.send();
 }
 
+
+function abrirModalPropiedades(className){
+  console.log(className)
+
+  var modal = document.getElementById('modal-propiedades');
+  var modalContent = document.getElementById('editarPropiedades');
+
+  if(className != ""){
+    // Fetch para obtener el contenido de la URL
+    fetch('http://localhost:8080/home/propiedades/' + className)
+        .then(response => response.text()) // Convertir la respuesta a texto
+        .then(data => {
+          // Insertar el contenido en el modal
+          modalContent.innerHTML = data;
+          // Mostrar el modal
+          modal.showModal();
+        })
+        .catch(error => {
+          console.error('Error al obtener el contenido:', error);
+        });
+  }
+}
+
 function addValuesTable(json){
   let tbody = document.getElementById('tabla').querySelector('tbody');
   let claves = Object.keys(json);
+
+  let botonModificar = document.getElementById('actualizarPropiedades')
+  botonModificar.className = json.id;
 
   if(tbody != null){
     while(tbody.firstChild){
@@ -79,7 +105,7 @@ function addValuesTable(json){
       tr.classList.add("seccion5")
     }
 
-    for(let c = 0; c < 4; c++){
+    for(let c = 0; c < 3; c++){
       let td = document.createElement("td");
       tr.appendChild(td);
       if(c == 0){
@@ -102,20 +128,6 @@ function marcarRegistroSeleccionado(id){
   document.getElementById(id).classList.add("seleccionadoTabla1");
 }
 
-function abrirModal(id){
-  let btnAbrirModal = document.getElementById('abrir-modal');
-  let modal = document.getElementById('modal')
-
-  modal.showModal();
-
-}
-
-function cerrarModal(){
-  let btnCerrarModal = document.getElementById('cerrar-modal');
-  let modal = document.getElementById('modal');
-
-  modal.close();
-}
 
 function abrirModal(id) {
 
