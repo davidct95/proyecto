@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+<<<<<<< HEAD
 	<title>Lista de componentes</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,125 +14,147 @@
 		body {
 			background-color: #f8f9fa;
 		}
+=======
+    <title>Lista de Componentes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+>>>>>>> cambio-interfaz
 
-		.container {
-			max-width: 1500px;
-			margin-top: 50px;
-		}
+    <!--Leaflet-->
 
-		h2 {
-			text-align: center;
-			margin-bottom: 30px;
-			color: #007bff;
-		}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-		table {
-			width: 100%;
-			margin-bottom: 1rem;
-			color: #212529;
-			border-collapse: collapse;
-			border-spacing: 0;
-		}
+    <!--Estilo-->
 
-		th,
-		td {
-			padding: 0.75rem;
-			text-align: left;
-			border-bottom: 1px solid #dee2e6;
-		}
+    <link rel="stylesheet" href="../static/styles/style-reset.css">
+    <link rel="stylesheet" href="../static/styles/style-componente.css">
 
-		th {
-			background-color: #007bff;
-			color: #ffffff;
-		}
+    <!--Proj4Leaflet-->
 
-		tbody tr:hover {
-			background-color: #f5f5f5;
-		}
+    <script src="../static/Proj4Leaflet-master/lib/proj4-compressed.js"></script>
+    <script src="../static/Proj4Leaflet-master/src/proj4leaflet.js"></script>
 
-		.btn-primary,
-		.btn-info,
-		.btn-danger {
-			padding: 0.375rem 0.75rem;
-			font-size: 0.9rem;
-		}
-
-		img {
-			width: 25px;
-		}
-	</style>
 </head>
 
 <body>
-	<div class="container mt-5">
-		<h2>Lista de Componentes</h2>
-		<form th:action="@{/home/upload}" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" />
-			<button type="submit">Subir Archivo</button>
-		</form>
-		<table id="componentesTable" class="table table-striped">
-			<thead>
-				<tr>
-					<th>Componente</th>
-					<th>Nombre</th>
-					<th>Sector</th>
-					<th>Paquete</th>
-					<th>Codigo</th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="fila:${listComponentes}">
-					<td>
-						<a th:href="@{/home/propiedades/__${fila.id}__}" th:text="${fila.componente}"></a>
-					</td>
-					<td th:text="${fila.nombre}"></td>
-					<td th:text="${fila.sector}"></td>
-					<td th:text="${fila.paquete}"></td>
-					<td th:text="${fila.codigo}"></td>
-					<td>
-						<!-- Crear un botón con un enlace -->
-						<a th:href="${fila.enlace_bim}" target="_blank">
-							<button type="button" class="btn btn-primary"><img th:src="@{../static/imagenes/web.png}" alt="link"></button>
-						</a>
-					</td>
-					<td>
-						<a th:href="@{/home/edit/__${fila.id}__}">
-							<button type="button" class="btn btn-info"><img th:src="@{../static/imagenes/recargar.png}" alt="upd"></button>
-						</a>
-					</td>
-					<td>
-						<a th:href="@{/home/del/__${fila.id}__}">
-							<button type="button" class="btn btn-danger"><img th:src="@{../static/imagenes/borrar.png}" alt="del"/></button>
-						</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
 
-	<script>
-		window.onload = function () {
-			let tabla = document.getElementById("componentesTable");
-			let filas = Array.from(tabla.rows).slice(1); // Excluimos la primera fila (cabecera)
-			filas.sort((a, b) => {
-				let valorA = a.cells[0].textContent.trim();
-				let valorB = b.cells[0].textContent.trim();
-				return valorA.localeCompare(valorB, undefined, {numeric: true});
-			});
-			// Vaciamos la tabla
-			while (tabla.rows.length > 1) {
-				tabla.deleteRow(1);
-			}
-			// Agregamos las filas ordenadas
-			filas.forEach(fila => {
-				tabla.appendChild(fila);
-			});
-		};
-	</script>
+<header>
+    <img src="../static/imagenes/syp.png" id="logo-syp">
+    <h1 id="titulo">ENTREGA DEL DRENAJE PLUVIAL INTEGRAL DE LA CIUDAD DE TALARA (PAQUETE D06)</h1>
+    <img src="../static/imagenes/anin.png" id="logo-anin">
+</header>
+
+<form th:action="@{/home/upload}" method="post" enctype="multipart/form-data" id="update">
+    <input type="file" name="file" id="subir-archivo"/>
+    <button type="submit" id="enviar-archivo">Enviar</button>
+</form>
+
+
+<main class="container">
+    <div class="left-column">
+        <div class="box1">
+            <table id="componentesTable" class="tabla-box1">
+                <thead>
+                <tr id="trtheadtabla1">
+                    <th>Componente</th>
+                    <th>Nombre</th>
+                    <th>Sector</th>
+                    <th>Paquete</th>
+                    <th>Codigo</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody class="tbodytabla1">
+                <tr th:each="fila:${listComponentes}" th:onclick="'getPropiedades(\'' + ${fila.id} + '\');'"
+                    th:id="${fila.id}" class="td-componente">
+                    <td class="valor1-td" style="cursor: pointer"><p th:text="${fila.componente}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.nombre}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.sector}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.paquete}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.codigo}" class="lista-parrafo"></p></td>
+                    <td class="th-botones" th:id="'td' + ${fila.id}">
+
+                        <a th:href="${fila.enlace_bim}" th:id="'botton-link' + ${fila.id}" target="_blank" style="text-decoration: none;">
+                        <button type="button" id="link" class="boton-tab boton-img"><img
+                                th:src="@{../static/imagenes/web.png}" alt="link"/></button>
+                    </a>
+
+
+                        <button type="button" id="abrir-modal" class="boton-tab boton-upd"><img
+                                th:src="@{../static/imagenes/recargar.png}" alt="upd" th:onclick="'abrirModal(\'' + ${fila.id} + '\');'"/></button>
+
+
+
+                        <a th:href="@{/home/del/__${fila.id}__}" th:id="'botton-del' + ${fila.id}" style="text-decoration: none;">
+                            <button type="button" id="del" class="boton-tab boton-del"><img
+                                    th:src="@{../static/imagenes/borrar.png}" alt="del"/></button>
+                        </a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="navigation-buttons" id="navigationButtons">
+                <!-- Los botones de navegación se agregarán aquí -->
+            </div>
+        </div>
+        <div class="box2">
+            <table>
+                <thead>
+                <tr id="tr-tablink">
+                    <th class="tablink" id="seccion1" onclick="openTab('seccion1')">01_DAI_Identificación</th>
+                    <th class="tablink" id="seccion2" onclick="openTab('seccion2')">02_DAI_Cantidades</th>
+                    <th class="tablink" id="seccion3" onclick="openTab('seccion3')">03_DAI_Proyectos</th>
+                    <th class="tablink" id="seccion4" onclick="openTab('seccion4')">04_DAI_Obra</th>
+                    <th class="tablink" id="seccion5" onclick="openTab('seccion5')">05_DAI_EOM</th>
+                    <th id="contenedorBotonActualizar"><img id="actualizarPropiedades" src="../static/imagenes/modificar.png" class = "" onclick="abrirModalPropiedades(this.className)"></th>
+                </tr>
+                </thead>
+            </table>
+
+            <div class="tabla-container">
+                <table class="tabla-box2" id="tabla">
+                    <thead>
+                    <tr>
+                        <th id="p">Identificación del parámetro</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="right-column">
+        <div class="box-right" id="map"></div>
+    </div>
+
+    <!--  -->
+</main>
+
+<dialog id="modal">
+    <div id="modalContent"></div>
+    <button id="cerrar-modal"  onclick="cerrarModal()">CANCELAR</button>
+</dialog>
+
+<dialog id="modal-propiedades">
+    <div id="editarPropiedades"></div>
+</dialog>
+
+<footer></footer>
 
 </body>
+
+<script src="../static/js/main-componentes.js"></script>
+<script src="../static/js/main_leaflet.js"></script>
 
 </html>

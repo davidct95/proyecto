@@ -1,0 +1,332 @@
+
+
+header{
+    height: 10vh;
+    background-color: #3b50b2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 0 10px;
+}
+
+#titulo{
+    font-family: Calibri;
+    color: white;
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+#logo-syp{
+    width: 120px;
+}
+
+#logo-anin{
+    width: 190px;
+}
+
+body{
+    background-color: #e4e9f3;
+}
+
+.container {
+    display: flex;
+    height: 75vh;
+    width: 100vw;
+    
+  }
+
+  .left-column  {
+    flex-grow: 1; /* Ambas columnas ocuparán el mismo espacio */
+    width: 70%;
+  }
+
+  .right-column {
+    flex-grow: 1; /* Ambas columnas ocuparán el mismo espacio */
+    width: 30%;
+      padding: 30px 0 60px 0;
+      box-sizing: border-box;
+  }
+
+  .box1 {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center; /* Centrar verticalmente */
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-top: 30px;
+  }
+
+  .box2 {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center; /* Centrar verticalmente */
+    flex-direction: column;
+    padding-top: 30px;
+    box-sizing: border-box;
+  }
+
+  .box-right {
+    width: 90%;
+    height: 100%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+  }
+
+  #navigationButtons {
+    margin-top: 30px;
+  }
+
+  .lista-botones{
+      border: #2c2b2b solid 1px;
+  }
+
+  #navigationButtons button{
+    background-color: #ffffff;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  #update{
+      display: flex;
+      align-items: end;
+      margin-left: 60px;
+      height: 7vh;
+  }
+
+  #subir-archivo {
+      border: solid 1px #c2c0c0;
+      border-radius: 5px;
+      margin-right: 30px;
+      padding: 10px;
+      font-family: "Calibri Light";
+      font-size: 14px;
+  }
+
+  #enviar-archivo{
+      padding: 10px;
+      background-color: #00c851;
+      border: solid 1px #c2c0c0;
+      cursor: pointer;
+      font-family: "Calibri Light";
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+  }
+
+table {
+    border-collapse: collapse;
+    border: 1px rgb(184, 182, 182) solid;
+    font-size: 14px;
+    width: 90%;
+}
+
+
+.tabla-box1 tbody td:first-child {
+    cursor: pointer;
+  }
+
+table tr:nth-child(even){
+    background-color: #ffffff;
+}
+
+table tr:nth-child(odd){
+    background-color: #f2f2f2;
+}
+
+#trtheadtabla1 {
+    background-color: #ffffff;
+}
+
+.tabla-container {
+    max-height: 200px; /* Ajusta la altura máxima según tus necesidades */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando el contenido excede la altura máxima */
+    width: 90%;
+}
+
+.tabla-box2 {
+    width: 100%; /* Ajusta el ancho de la tabla según sea necesario */
+}
+
+.td-componente{
+    box-sizing: border-box;
+    display: none;
+}
+
+#trtheadtabla1 th{
+    height: 30px;
+    vertical-align: middle;
+}
+
+.tabla-box1 td {
+    height: 30px;
+    vertical-align: middle;
+    padding: 0 0 0 10px;
+    cursor: default;
+}
+
+
+.tabla-box2 td {
+    height: 30px;
+    vertical-align: middle;
+    width: 33.333333%;
+    padding: 0 0 0 10px;
+}
+
+td {
+    border-right: #c5c1c1 solid 1px;
+    font-family: "Calibri Light";
+}
+
+tr td:last-child {
+    border-right: none; /* Elimina el borde a la derecha del último td de cada fila */
+}
+
+th{
+    font-family: Calibri;
+    font-weight: bold;
+}
+
+.th-botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabla-box2 th {
+    height: 30px;
+    width: 33.3333%;
+    position: sticky;
+    vertical-align: middle;
+    top: 0; /* Fija el encabezado en la parte superior */
+    background-color: white; /* Ajusta el color de fondo según tu diseño */
+}
+
+.tablink {
+    height: 30px;
+    vertical-align: middle;
+    border: 1px rgb(184, 182, 182) solid;
+    background-color: #ffffff;
+    margin: 0;
+    cursor: pointer;
+}
+
+img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17px;
+}
+
+.boton{
+  border-color: rgb(170, 165, 165);
+  border-width: 1px;
+  width: 30px;
+  height: 30px;
+}
+
+#link {
+  background-color: #4285f4;
+}
+
+.boton-upd{
+  background-color: #00c851;
+}
+
+#del{
+  background-color: #ff3547;
+}
+
+
+
+.selected {
+  background-color: rgb(92, 142, 209);
+  color: white;
+}
+
+.seleccionadoTabla1{
+    border: #c82333 2px solid;
+    box-sizing: border-box;
+}
+
+.boton-tab {
+    cursor: pointer;
+    border: 1px solid rgb(184, 182, 182);
+    margin-left: 8px;
+}
+
+
+.buttonRegister{
+    width: 35px;
+    height: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc; /* bordes para el botón */
+    background-color: #f0f0f0; /* color de fondo para el botón */
+    cursor: pointer;
+}
+
+.img-button{
+    width: 100%;
+    height: 100%;
+}
+
+.lista-tabla1 {
+    width: auto;
+}
+
+#modal {
+    width: 600px;
+    height: 500px;
+    border: solid black 1px;
+}
+
+#modal-propiedades{
+    width: 600px;
+    height: 500px;
+    border: solid black 1px;
+}
+
+#modal-propiedades::backdrop{
+    background-color: rgba(0,0,0,.55);
+}
+
+#modal::backdrop{
+    background-color: rgba(0,0,0,.55);
+}
+
+#cerrar-modal{
+    float: right;
+    font-family: Calibri;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: #ff3547;
+    width: 100px;
+    cursor: pointer;
+    border: 1px solid black;
+    height: 30px;
+}
+
+#contenedorBotonActualizar{
+    display: flex;
+    justify-content: center;
+}
+
+#actualizarPropiedades{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+footer{
+    background-color: #3b50b2;
+    height: 8vh;
+}

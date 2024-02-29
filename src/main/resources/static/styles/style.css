@@ -1,46 +1,52 @@
+#modal-container{
+  width: 600px;
+  height: 450px;
+}
 
-body {
-    font-family: 'Calibri';
-    background-color: #f0f0f0;
-    margin: 0;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-  
-  .container {
-    width: 80%;
-    margin: 0 auto; 
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px; 
-    margin-bottom: 50px;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-    width: 30%;
-  }
-  
-  .titulo {
-    background-color: #0c2074;
-    color: white;
-  }
+#modal-titulo{
+  width: 100%;
+  color: red;
+  font-size: 30px;
+  text-align: center;
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid black;
+  margin-bottom: 30px;
+  font-family: Calibri;
+}
 
-  .ip{
-    background-color: #a2abc6;
-    font-weight: bold;
-  }
-  
-  .encabezado {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    background-color: #0c2074;
-    color: white;
-  }
-  
+.mb-3{
+  width: 100%;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.mb-3-ultimo{
+  border-bottom: 1px solid black;
+  padding-bottom: 30px;
+  margin-bottom: 50px
+}
+
+.form-label{
+  padding-left: 10px;
+  width: 35%;
+  height: 30px;
+  font-weight: bold;
+  font-family: "Calibri Light";
+}
+
+.form-control{
+  width: 100%;
+  font-family: "Calibri Light";
+}
+
+#modal-guardar{
+  font-family: Calibri;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background-color: #00c851;
+  width: 100px;
+  cursor: pointer;
+  border: 1px solid black;
+  height: 30px;
+}
