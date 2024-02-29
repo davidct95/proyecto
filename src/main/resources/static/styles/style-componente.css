@@ -4,19 +4,24 @@ header{
     height: 10vh;
     background-color: #3b50b2;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 10px 0 10px;
 }
 
 #titulo{
     font-family: Calibri;
     color: white;
-    font-size: 40px;
+    font-size: 30px;
     margin-left: 10px;
 }
 
-#icono-editar{
-    width: 40px;
+#logo-syp{
+    width: 120px;
+}
+
+#logo-anin{
+    width: 190px;
 }
 
 body{
@@ -316,11 +321,9 @@ img {
 }
 
 #actualizarPropiedades{
-    background-color: #00c851;
     width: 30px;
     height: 30px;
     cursor: pointer;
-    border: 1px solid black;
 }
 
 footer{
