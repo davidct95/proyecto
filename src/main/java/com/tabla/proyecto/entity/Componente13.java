@@ -1,5 +1,6 @@
 package com.tabla.proyecto.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.MultiPolygon;
@@ -14,7 +15,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "componentes", schema = "tabla")
-public class Componente13 implements Serializable {
+public class
+Componente13 implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "gid")
@@ -44,6 +46,7 @@ public class Componente13 implements Serializable {
 	@Column(name = "codigo")
 	private String codigo;
 
+	@JsonIgnore
 	@Type(type = "jts_geometry")
 	@Column(name = "geom", columnDefinition = "geometry(MultiPolygon,32717)")
 	private MultiPolygon geom;

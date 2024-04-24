@@ -10,6 +10,7 @@ com\tabla\proyecto\mapJson\features\Geometry.class
 com\tabla\proyecto\ServletInitializer.class
 com\tabla\proyecto\entity\Componente13.class
 com\tabla\proyecto\service\Componente13Service.class
+com\tabla\proyecto\dto\Componente13DTO.class
 com\tabla\proyecto\mapJson\features\Properties.class
 com\tabla\proyecto\service\impl\Componente13ServiceImpl.class
 com\tabla\proyecto\ProyectoApplication.class

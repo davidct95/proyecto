@@ -59,4 +59,25 @@ public class Componente13ServiceImpl implements Componente13Service{
 	public void upload(Componente13Model model) {
 		componente13Repository.save(componente13Converter.aEntity(model));
 	}
+
+	@Override
+	public Componente13 actualizarComponente(Long id, Componente13Model componenteActualizado) {
+
+		Componente13 componenteExistente = componente13Repository.findById(id).orElse(null);
+		Componente13Model componenteExistenteModel =  componente13Converter.aModel(componenteExistente);
+
+		if (componenteExistenteModel != null) {
+			componenteExistenteModel.setComponente(componenteActualizado.getComponente());
+			componenteExistenteModel.setNombre(componenteActualizado.getNombre());
+			// Asígnale otras propiedades que necesites actualizar
+
+			Componente13 componenteExistenteEntity = componente13Converter.aEntity(componenteExistenteModel);
+
+			return componente13Repository.save(componenteExistenteEntity);
+		} else {
+			return null;
+		}
+
+
+	}
 }
