@@ -1,9 +1,5 @@
-FROM maven:3.9.6-openjdk-11 AS build
-COPY . .
-RUN mvn clean package -DskipTests
+FROM amazoncorretto:11-alpine-jdk
 
-FROM openjdk:11
-COPY --from=build /target/proyecto-0.0.1-SNAPSHOT.jar /talara.jar
-EXPOSE 8080
+COPY target/proyecto-0.0.1-SNAPSHOT.war talara.war
 
-ENTRYPOINT ["java", "-jar", "demo.jar"]
+ENTRYPOINT ["java" , "-jar" , "/talara.war"]
