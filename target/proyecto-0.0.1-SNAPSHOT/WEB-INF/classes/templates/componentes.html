@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Lista de Componentes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Leaflet-->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!--Estilo-->
+
+    <link rel="stylesheet" href="../static/styles/style-reset.css">
+    <link rel="stylesheet" href="../static/styles/style-componente.css">
+
+    <!--Proj4Leaflet-->
+
+    <script src="../static/Proj4Leaflet-master/lib/proj4-compressed.js"></script>
+    <script src="../static/Proj4Leaflet-master/src/proj4leaflet.js"></script>
+
+</head>
+
+<body>
+
+<header>
+    <img src="../static/imagenes/syp.png" id="logo-syp">
+    <h1 id="titulo">ENTREGA DEL DRENAJE PLUVIAL INTEGRAL DE LA CIUDAD DE TALARA (PAQUETE D06)</h1>
+    <img src="../static/imagenes/anin.png" id="logo-anin">
+</header>
+
+<form th:action="@{/home/upload}" method="post" enctype="multipart/form-data" id="update">
+    <input type="file" name="file" id="subir-archivo"/>
+    <button type="submit" id="enviar-archivo">Enviar</button>
+</form>
+
+<main class="container">
+    <div class="left-column">
+        <div class="box1">
+            <table id="componentesTable" class="tabla-box1">
+                <thead>
+                <tr id="trtheadtabla1">
+                    <th>Componente</th>
+                    <th>Nombre</th>
+                    <th>Sector</th>
+                    <th>Paquete</th>
+                    <th>Codigo</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody class="tbodytabla1">
+                <tr th:each="fila:${listComponentes}" th:onclick="'getPropiedades(\'' + ${fila.id} + '\');'"
+                    th:id="${fila.id}" class="td-componente">
+                    <td class="valor1-td" style="cursor: pointer"><p th:text="${fila.componente}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.nombre}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.sector}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.paquete}" class="lista-parrafo"></p></td>
+                    <td><p th:text="${fila.codigo}" class="lista-parrafo"></p></td>
+                    <td class="th-botones" th:id="'td' + ${fila.id}">
+
+                        <a th:href="${fila.enlace_bim}" th:id="'botton-link' + ${fila.id}" target="_blank" style="text-decoration: none;">
+                        <button type="button" id="link" class="boton-tab boton-img"><img
+                                th:src="@{../static/imagenes/web.png}" alt="link"/></button>
+                    </a>
+
+
+                        <button type="button" id="abrir-modal" class="boton-tab boton-upd"><img
+                                th:src="@{../static/imagenes/recargar.png}" alt="upd" th:onclick="'abrirModal(\'' + ${fila.id} + '\');'"/></button>
+
+
+
+                        <a th:href="@{/home/del/__${fila.id}__}" th:id="'botton-del' + ${fila.id}" style="text-decoration: none;">
+                            <button type="button" id="del" class="boton-tab boton-del"><img
+                                    th:src="@{../static/imagenes/borrar.png}" alt="del"/></button>
+                        </a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="navigation-buttons" id="navigationButtons">
+                <!-- Los botones de navegación se agregarán aquí -->
+            </div>
+        </div>
+        <div class="box2">
+            <table>
+                <thead>
+                <tr id="tr-tablink">
+                    <th class="tablink" id="seccion1" onclick="openTab('seccion1')">01_DAI_Identificación</th>
+                    <th class="tablink" id="seccion2" onclick="openTab('seccion2')">02_DAI_Cantidades</th>
+                    <th class="tablink" id="seccion3" onclick="openTab('seccion3')">03_DAI_Proyectos</th>
+                    <th class="tablink" id="seccion4" onclick="openTab('seccion4')">04_DAI_Obra</th>
+                    <th class="tablink" id="seccion5" onclick="openTab('seccion5')">05_DAI_EOM</th>
+                    <th id="contenedorBotonActualizar"><img id="actualizarPropiedades" src="../static/imagenes/modificar.png" class = "" onclick="abrirModalPropiedades(this.className)"></th>
+                </tr>
+                </thead>
+            </table>
+
+            <div class="tabla-container">
+                <table class="tabla-box2" id="tabla">
+                    <thead>
+                    <tr>
+                        <th id="p">Identificación del parámetro</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="right-column">
+        <div class="box-right" id="map"></div>
+    </div>
+
+    <!--  -->
+</main>
+
+<dialog id="modal">
+    <div id="modalContent"></div>
+    <button id="cerrar-modal"  onclick="cerrarModal()">CANCELAR</button>
+</dialog>
+
+<dialog id="modal-propiedades">
+    <div id="editarPropiedades"></div>
+</dialog>
+
+<footer></footer>
+
+</body>
+
+<script src="../static/js/main-componentes.js"></script>
+<script src="../static/js/main_leaflet.js"></script>
+
+</html>

@@ -1,0 +1,52 @@
+#modal-container{
+  width: 600px;
+  height: 450px;
+}
+
+#modal-titulo{
+  width: 100%;
+  color: red;
+  font-size: 30px;
+  text-align: center;
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid black;
+  margin-bottom: 30px;
+  font-family: Calibri;
+}
+
+.mb-3{
+  width: 100%;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.mb-3-ultimo{
+  border-bottom: 1px solid black;
+  padding-bottom: 30px;
+  margin-bottom: 50px
+}
+
+.form-label{
+  padding-left: 10px;
+  width: 35%;
+  height: 30px;
+  font-weight: bold;
+  font-family: "Calibri Light";
+}
+
+.form-control{
+  width: 100%;
+  font-family: "Calibri Light";
+}
+
+#modal-guardar{
+  font-family: Calibri;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background-color: #00c851;
+  width: 100px;
+  cursor: pointer;
+  border: 1px solid black;
+  height: 30px;
+}
