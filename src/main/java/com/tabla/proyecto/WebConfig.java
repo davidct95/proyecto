@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200/")
+                .allowedOrigins("https://unique-panda-2d22b9.netlify.app/")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 }

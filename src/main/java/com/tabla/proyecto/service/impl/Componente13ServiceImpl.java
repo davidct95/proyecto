@@ -67,8 +67,49 @@ public class Componente13ServiceImpl implements Componente13Service{
 		Componente13Model componenteExistenteModel =  componente13Converter.aModel(componenteExistente);
 
 		if (componenteExistenteModel != null) {
+
+			//Componentes
 			componenteExistenteModel.setComponente(componenteActualizado.getComponente());
 			componenteExistenteModel.setNombre(componenteActualizado.getNombre());
+			componenteExistenteModel.setSector(componenteActualizado.getSector());
+			componenteExistenteModel.setPaquete(componenteActualizado.getPaquete());
+			componenteExistenteModel.setEnlace_bim(componenteActualizado.getEnlace_bim());
+
+			//Propiedades
+			componenteExistenteModel.setDai_01_00_id_valor(componenteActualizado.getDai_01_00_id_valor());
+			componenteExistenteModel.setDai_01_01_proyecto_valor(componenteActualizado.getDai_01_01_proyecto_valor());
+			componenteExistenteModel.setDai_01_02_localizador_valor(componenteActualizado.getDai_01_02_localizador_valor());
+			componenteExistenteModel.setDai_01_03_estado_valor(componenteActualizado.getDai_01_03_estado_valor());
+			componenteExistenteModel.setDai_01_04_clasificacion_valor(componenteActualizado.getDai_01_04_clasificacion_valor());
+			componenteExistenteModel.setDai_01_05_tipologia_valor(componenteActualizado.getDai_01_05_tipologia_valor());
+			componenteExistenteModel.setDai_01_06_disciplina_valor(componenteActualizado.getDai_01_06_disciplina_valor());
+			componenteExistenteModel.setDai_01_07_subdisciplina_valor(componenteActualizado.getDai_01_07_subdisciplina_valor());
+			componenteExistenteModel.setDai_01_08_material_valor(componenteActualizado.getDai_01_08_material_valor());
+			componenteExistenteModel.setDai_02_01_unidad_valor(componenteActualizado.getDai_02_01_unidad_valor());
+			componenteExistenteModel.setDai_02_02_longitud_valor(componenteActualizado.getDai_02_02_longitud_valor());
+			componenteExistenteModel.setDai_02_03_espesor_valor(componenteActualizado.getDai_02_03_espesor_valor());
+			componenteExistenteModel.setDai_02_04_area_valor(componenteActualizado.getDai_02_04_area_valor());
+			componenteExistenteModel.setDai_02_05_volumen_valor(componenteActualizado.getDai_02_05_volumen_valor());
+			componenteExistenteModel.setDai_03_01_faseobra_valor(componenteActualizado.getDai_03_01_faseobra_valor());
+			componenteExistenteModel.setDai_03_02_plano_valor(componenteActualizado.getDai_03_02_plano_valor());
+			componenteExistenteModel.setDai_03_03_pptp_valor(componenteActualizado.getDai_03_03_pptp_valor());
+			componenteExistenteModel.setDai_03_04_01_udmedicion01_valor_valor(componenteActualizado.getDai_03_04_01_udmedicion01_valor_valor());
+			componenteExistenteModel.setDai_03_04_02_udmedicion02_valor(componenteActualizado.getDai_03_04_02_udmedicion02_valor());
+			componenteExistenteModel.setDai_03_04_03_udmedicion03_valor(componenteActualizado.getDai_03_04_03_udmedicion03_valor());
+			componenteExistenteModel.setDai_04_01_controlesdecalidad_valor(componenteActualizado.getDai_04_01_controlesdecalidad_valor());
+			componenteExistenteModel.setDai_04_02_fotografias(componenteActualizado.getDai_04_02_fotografias());
+			componenteExistenteModel.setDai_04_03_seguridadysalud(componenteActualizado.getDai_04_03_seguridadysalud());
+			componenteExistenteModel.setDai_04_04_informesdeaprobacion_valor(componenteActualizado.getDai_04_04_informesdeaprobacion_valor());
+			componenteExistenteModel.setDai_04_05_certificaciones_valor(componenteActualizado.getDai_04_05_certificaciones_valor());
+			componenteExistenteModel.setDai_04_06_planosasbuilt_valor(componenteActualizado.getDai_04_06_planosasbuilt_valor());
+			componenteExistenteModel.setDai_04_07_medioambiente_valor(componenteActualizado.getDai_04_07_medioambiente_valor());
+			componenteExistenteModel.setDai_05_01_01_necesitamantenimiento_valor(componenteActualizado.getDai_05_01_01_necesitamantenimiento_valor());
+			componenteExistenteModel.setDai_05_01_02_auxmantenimiento_valor(componenteActualizado.getDai_05_01_02_auxmantenimiento_valor());
+			componenteExistenteModel.setDai_05_02_01_codexplotacion_valor(componenteActualizado.getDai_05_02_01_codexplotacion_valor());
+			componenteExistenteModel.setDai_05_02_02_auxexplotacion_valor(componenteActualizado.getDai_05_02_02_auxexplotacion_valor());
+			componenteExistenteModel.setDai_05_03_01_codcontable_valor(componenteActualizado.getDai_05_03_01_codcontable_valor());
+			componenteExistenteModel.setDai_05_03_02_auxcontable_valor(componenteActualizado.getDai_05_03_02_auxcontable_valor());
+
 			// Asígnale otras propiedades que necesites actualizar
 
 			Componente13 componenteExistenteEntity = componente13Converter.aEntity(componenteExistenteModel);
@@ -77,7 +118,5 @@ public class Componente13ServiceImpl implements Componente13Service{
 		} else {
 			return null;
 		}
-
-
 	}
 }

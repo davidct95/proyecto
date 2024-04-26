@@ -23,7 +23,7 @@ import com.tabla.proyecto.model.Componente13Model;
 import com.tabla.proyecto.service.Componente13Service;
 import org.springframework.web.multipart.MultipartFile;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://unique-panda-2d22b9.netlify.app/")
 @Controller
 @RequestMapping("/home")
 @SessionAttributes("componentes")
@@ -53,7 +53,7 @@ public class Componente13Controller {
         return "componentesForm";
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://unique-panda-2d22b9.netlify.app/")
     @GetMapping("/buscar/{id}")
     @ResponseBody
     public String findById(@PathVariable Long id) {
@@ -128,7 +128,7 @@ public class Componente13Controller {
         return "propiedades";
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://unique-panda-2d22b9.netlify.app/")
     @GetMapping("p/{id}")
     @ResponseBody
     public Componente13Model datosPropiedades(@PathVariable Long id) {
@@ -296,9 +296,10 @@ public class Componente13Controller {
         } else {
             return ResponseEntity.badRequest().body("Archivo no válido");
         }
+
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://unique-panda-2d22b9.netlify.app/")
     @GetMapping("/allJson")
     @ResponseBody
     public List<FeatureCollection> FindAllJson() {
